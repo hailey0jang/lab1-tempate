@@ -1,6 +1,6 @@
 ---
 title: "Lab 1 - Data visualization"
-author: "[INSERT NAME]"
+author: "Hailey Jang"
 format: pdf
 editor: visual
 ---
@@ -12,15 +12,38 @@ editor: visual
 #| message: false
 
 library(tidyverse)
+library(viridis)
 ```
 
 ## Exercise 1
 
-(Type your answer to Exercise 1 here. Add code chunks as needed. Don't forget to label your code chunk. Do not use spaces in code chunk labels.)
+(The shape of the distribution is right-skewed. There seem to be outliers at population density of around 9000.)
+
+```{r}
+#| label: add-histogram
+ggplot(midwest, mapping=aes(x=popdensity))+
+  geom_histogram(binwidth=10000)+
+  labs(
+    x="population density",
+    y= "frequency",
+    title="Population Density of Counties"
+  )
+```
 
 ## Exercise 2
 
-(Type your answer to Exercise 2 here. Add code chunks as needed. Don't forget to label your code chunk. Do not use spaces in code chunk labels.)
+```{r}
+#| label: add-scatterplot
+ggplot(midwest, mapping=aes(x=percollege, y=percbelowpoverty, color=state))+
+  geom_point()+
+  labs(
+    x="percentage of people with a college degree",
+    y= "percentage below poverty",
+    title="Percentage of people with a college degree v Percentage below poverty"
+  )+
+  scale_color_viridis_d(option="D", end=0.8)+
+  theme_minimal()
+```
 
 ## Exercise 3
 
@@ -28,11 +51,8 @@ library(tidyverse)
 
 ## Exercise 4
 
-
 ## Exercise 5
 
-
 ## Exercise 6
-
 
 ## Exercise 7
