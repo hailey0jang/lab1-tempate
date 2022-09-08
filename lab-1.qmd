@@ -10,6 +10,7 @@ editor: visual
 ```{r}
 #| label: load-packages
 #| message: false
+#| warning: false
 
 library(tidyverse)
 library(viridis)
@@ -47,9 +48,24 @@ ggplot(midwest, mapping=aes(x=percollege, y=percbelowpoverty, color=state))+
 
 ## Exercise 3
 
-(Type your answer to Exercise 3 here. Add code chunks as needed. Don't forget to label your code chunk. Do not use spaces in code chunk labels.)
+In the plot from exercise 2, I observe that there are several more points clustered near the lower left, indicating lower percentage of people with a college degree tend to also be in the lower range of percentage of people living below poverty. Similarities is patterns among states are that most of the states follow the trend I mentioned in the previous sentence. Differences in patterns among states are that Illinois tends to have data points are higher in percentage of having a college degree while Ohio in particular has data points that are slightly lower in percentage of having a college degree.
 
 ## Exercise 4
+
+```{r}
+#| label: scatterplots_for_each_state
+ggplot(midwest, mapping=aes(x=percollege, y=percbelowpoverty, color=state))+
+  geom_smooth(se=FALSE, show.legend=FALSE)+
+  labs(
+    x="percentage of people with a college degree",
+    y= "percentage below poverty",
+    title="Percentage of people with a college degree v Percentage below poverty"
+  )+
+  facet_wrap(~state)+
+  scale_color_viridis_d(option="D", end=0.8)+
+  theme_minimal()
+```
+I prefer this plot over the plot in Ex 2 because the first plot was hard to tell where the individual data points were, so it was difficult to compare the patterns. However, for this plot, it is much more clear what the pattern looks like, making it easier to compare them.
 
 ## Exercise 5
 
