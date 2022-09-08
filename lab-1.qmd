@@ -88,8 +88,17 @@ The state with the single largest is MI, and the plot shows it because it is the
 ```{r}
 midwest <- midwest |>
   mutate(metro = if_else(inmetro == 1, "Yes", "No"))
-```
 
+ggplot(midwest, aes(fill=metro, x=state)) +
+    geom_bar(position="fill")+
+  labs(
+    x="state",
+    y= "percentage of county in metro area",
+    title="Area of a County based on State"
+  )+
+  theme_minimal()
+```
+I notice from the plot that OH has the highest percentage of counties considered in a metro area while WI and IL have very similar levels that would be lowest percentage of counties in a metro area. 
 
 ## Exercise 7
 
