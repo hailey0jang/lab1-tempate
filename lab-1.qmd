@@ -40,7 +40,7 @@ ggplot(midwest, mapping=aes(x=percollege, y=percbelowpoverty, color=state))+
   labs(
     x="percentage of people with a college degree",
     y= "percentage below poverty",
-    title="Percentage of people with a college degree v Percentage below poverty"
+    title="Percentage of people with a college degree v Percentage below poverty by State"
   )+
   scale_color_viridis_d(option="D", end=0.8)+
   theme_minimal()
@@ -69,6 +69,40 @@ I prefer this plot over the plot in Ex 2 because the first plot was hard to tell
 
 ## Exercise 5
 
+```{r}
+#| label: side_by_side_boxplots
+ggplot(midwest, mapping=aes(x=area, y=state))+
+  geom_boxplot(show.legend=FALSE)+
+  labs(
+    x="area",
+    y= "state",
+    title="Area of a County based on State"
+  )+
+  theme_minimal()
+```
+I observe from the plot that WI has the largest IQR in area while IN has the smallest. IN has several outliers compared to the other states.
+The state with the single largest is MI, and the plot shows it because it is the data point with the highest area.
+
 ## Exercise 6
 
+```{r}
+midwest <- midwest |>
+  mutate(metro = if_else(inmetro == 1, "Yes", "No"))
+```
+
+
 ## Exercise 7
+
+```{r}
+#| label: recreating plot
+ggplot(midwest, mapping=aes(x=percollege, y=popdensity, color=percbelowpoverty))+
+  geom_point(size=2, alpha=0.5)+
+  labs(
+    x="% college educated",
+    y= "population density (person/unit area)",
+    title="Do people with college degrees tend to live in denser areas?",
+    color="% below \n poverty line"
+  )+
+  facet_wrap(~state)+
+  theme_minimal()
+```
